@@ -7,12 +7,12 @@
  * instead of template_directory
  */
 
-define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_stylesheet_directory_uri() . '/inc/' );
-require_once dirname( __FILE__ ) . '/inc/options-framework.php';
+// define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_stylesheet_directory_uri() . '/inc/' );
+// require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 
-// Loads options.php from child or parent theme
-$optionsfile = locate_template( 'options.php' );
-load_template( $optionsfile );
+// // Loads options.php from child or parent theme
+// $optionsfile = locate_template( 'options.php' );
+// load_template( $optionsfile );
 
 function tssc3_theme_enqueue_styles() {
 
