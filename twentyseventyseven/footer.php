@@ -3,7 +3,7 @@
 <footer>
     
     <?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?>
-    <p>© Company 2012</p>
+    <p>© Copyright 2077</p>
     
 </footer>
 

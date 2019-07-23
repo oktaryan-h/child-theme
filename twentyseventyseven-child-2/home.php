@@ -6,18 +6,12 @@
 
     <?php
 
-    //$args = '';
-
     if ( of_get_option('limit-post-frontpage') == 1 ) {
       $show_post = new WP_Query( 'posts_per_page='.of_get_option('limit-post-frontpage-value') );
     }
     else {
       $show_post = new WP_Query();
     }
-
-    //$show_post = new WP_Query( $args );
-
-    //var_dump($show_post);
 
     if ( $show_post->have_posts() ) : while ( $show_post->have_posts() ) : $show_post->the_post(); ?>
       <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>

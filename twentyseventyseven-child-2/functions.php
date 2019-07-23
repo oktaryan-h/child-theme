@@ -14,15 +14,7 @@ require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 $optionsfile = locate_template( 'options.php' );
 load_template( $optionsfile );
 
-/*
- * This is an example of how to add custom scripts to the options panel.
- * This one shows/hides the an option when a checkbox is clicked.
- *
- * You can delete it if you not using that option
- */
-add_action( 'optionsframework_custom_scripts', 'optionsframework_custom_scripts' );
-
-function optionsframework_custom_scripts() { ?>
+function tssc2_custom_scripts() { ?>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
@@ -41,25 +33,7 @@ function optionsframework_custom_scripts() { ?>
 	<?php
 }
 
-/*
- * This is an example of filtering menu parameters
- */
-
-/*
-function prefix_options_menu_filter( $menu ) {
-	$menu['mode'] = 'menu';
-	$menu['page_title'] = __( 'Hello Options', 'textdomain');
-	$menu['menu_title'] = __( 'Hello Options', 'textdomain');
-	$menu['menu_slug'] = 'hello-options';
-	return $menu;
-}
-
-add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
-*/
-
-function my_theme_enqueue_styles() {
-
-	echo 'UX '.of_get_option('limit-post-frontpage', 1);
+function tssc2_theme_enqueue_styles() {
 
 	$parent_style = 'parent-style'; // This is 'twentyfifteen-style' for the Twenty Fifteen theme.
 
@@ -71,4 +45,5 @@ function my_theme_enqueue_styles() {
 	);
 }
 
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+add_action( 'optionsframework_custom_scripts', 'tssc2_custom_scripts' );
+add_action( 'wp_enqueue_scripts', 'tssc2_theme_enqueue_styles' );

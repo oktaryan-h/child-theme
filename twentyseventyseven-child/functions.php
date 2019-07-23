@@ -1,12 +1,5 @@
 <?php
 
-/*
- * Loads the Options Panel
- *
- * If you're loading from a child theme use stylesheet_directory
- * instead of template_directory
- */
-
 define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_stylesheet_directory_uri() . '/inc/' );
 require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 
@@ -14,52 +7,9 @@ require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 $optionsfile = locate_template( 'options.php' );
 load_template( $optionsfile );
 
-/*
- * This is an example of how to add custom scripts to the options panel.
- * This one shows/hides the an option when a checkbox is clicked.
- *
- * You can delete it if you not using that option
- */
-add_action( 'optionsframework_custom_scripts', 'optionsframework_custom_scripts' );
+function tssc_theme_enqueue_styles() {
 
-function optionsframework_custom_scripts() { ?>
-
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-
-			jQuery('#example_showhidden').click(function() {
-				jQuery('#section-example_text_hidden').fadeToggle(400);
-			});
-
-			if (jQuery('#example_showhidden:checked').val() !== undefined) {
-				jQuery('#section-example_text_hidden').show();
-			}
-
-		});
-	</script>
-
-	<?php
-}
-
-/*
- * This is an example of filtering menu parameters
- */
-
-/*
-function prefix_options_menu_filter( $menu ) {
-	$menu['mode'] = 'menu';
-	$menu['page_title'] = __( 'Hello Options', 'textdomain');
-	$menu['menu_title'] = __( 'Hello Options', 'textdomain');
-	$menu['menu_slug'] = 'hello-options';
-	return $menu;
-}
-
-add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
-*/
-
-function my_theme_enqueue_styles() {
-
-	$parent_style = 'parent-style'; // This is 'twentyfifteen-style' for the Twenty Fifteen theme.
+	$parent_style = 'parent-style';
 
 	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'child-style',
@@ -69,4 +19,17 @@ function my_theme_enqueue_styles() {
 	);
 }
 
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+// function tssc_custom_logo_setup() {
+// 	$defaults = array(
+// 		'height'      => 50,
+// 		'width'       => 150,
+// 		'flex-height' => true,
+// 		'flex-width'  => true,
+// 		'header-text' => array( 'site-title', 'site-description' ),
+// 	);
+// 	add_theme_support( 'custom-logo', $defaults );
+// }
+
+// add_action( 'after_setup_theme', 'tssc_custom_logo_setup' );
+
+add_action( 'wp_enqueue_scripts', 'tssc_theme_enqueue_styles' );
